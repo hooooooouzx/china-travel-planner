@@ -41,6 +41,17 @@ export const cities = [
   "太原",
   "石家庄",
   "长春",
+  // 河北城市
+  "邯郸",
+  "保定",
+  "唐山",
+  "秦皇岛",
+  "廊坊",
+  "承德",
+  "张家口",
+  "沧州",
+  "邢台",
+  "衡水",
   // 热门旅游城市
   "黄山",
   "张家界",
@@ -51,7 +62,6 @@ export const cities = [
   "北海",
   "珠海",
   "威海",
-  "秦皇岛",
   "洛阳",
   "开封",
   "无锡",
@@ -102,84 +112,39 @@ export const cities = [
   "六安",
 ];
 
-// 搜索平台配置
-export interface SearchPlatform {
-  name: string;
-  icon: string;
-  color: string;
-  getUrl: (from: string, to: string, days: number) => string;
-  description: string;
-}
+// 城市图片映射（使用 Unsplash 免费图片）
+export const cityImages: Record<string, string> = {
+  北京: "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=800",
+  上海: "https://images.unsplash.com/photo-1474181487882-5abf3f0ba6c2?w=800",
+  成都: "https://images.unsplash.com/photo-1590103514966-5e2a11c13e21?w=800",
+  杭州: "https://images.unsplash.com/photo-1599571234909-29ed5d1321d6?w=800",
+  西安: "https://images.unsplash.com/photo-1624344653076-8f9e23ec0ad9?w=800",
+  广州: "https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=800",
+  深圳: "https://images.unsplash.com/photo-1598135753163-6167c1a1ad65?w=800",
+  三亚: "https://images.unsplash.com/photo-1559628376-f3fe5f782a2e?w=800",
+  丽江: "https://images.unsplash.com/photo-1528164344705-47542687000d?w=800",
+  桂林: "https://images.unsplash.com/photo-1529921879218-f99546d03a9c?w=800",
+  拉萨: "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=800",
+  重庆: "https://images.unsplash.com/photo-1599571234909-29ed5d1321d6?w=800",
+  厦门: "https://images.unsplash.com/photo-1559628376-f3fe5f782a2e?w=800",
+  青岛: "https://images.unsplash.com/photo-1559628376-f3fe5f782a2e?w=800",
+  大连: "https://images.unsplash.com/photo-1559628376-f3fe5f782a2e?w=800",
+  苏州: "https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?w=800",
+  南京: "https://images.unsplash.com/photo-1599571234909-29ed5d1321d6?w=800",
+  武汉: "https://images.unsplash.com/photo-1599571234909-29ed5d1321d6?w=800",
+  长沙: "https://images.unsplash.com/photo-1599571234909-29ed5d1321d6?w=800",
+  邯郸: "https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?w=800",
+};
 
-export const searchPlatforms: SearchPlatform[] = [
-  {
-    name: "小红书",
-    icon: "📕",
-    color: "bg-red-500 hover:bg-red-600",
-    getUrl: (from, to, days) =>
-      `https://www.xiaohongshu.com/search_result?keyword=${encodeURIComponent(
-        `${from}到${to} ${days}天 旅行攻略`
-      )}`,
-    description: "真实用户分享的旅行笔记和攻略",
-  },
-  {
-    name: "马蜂窝",
-    icon: "🐝",
-    color: "bg-yellow-500 hover:bg-yellow-600",
-    getUrl: (from, to, days) =>
-      `https://www.mafengwo.cn/search/q.html?q=${encodeURIComponent(
-        `${to}${days}天攻略`
-      )}`,
-    description: "专业旅行社区的详细攻略",
-  },
-  {
-    name: "携程攻略",
-    icon: "✈️",
-    color: "bg-blue-500 hover:bg-blue-600",
-    getUrl: (from, to) =>
-      `https://you.ctrip.com/searchsite/search?query=${encodeURIComponent(
-        `${to}旅游攻略`
-      )}`,
-    description: "携程旅行攻略社区",
-  },
-  {
-    name: "抖音",
-    icon: "🎵",
-    color: "bg-black hover:bg-gray-800",
-    getUrl: (from, to, days) =>
-      `https://www.douyin.com/search/${encodeURIComponent(
-        `${to}旅行vlog ${days}天`
-      )}`,
-    description: "视频形式的旅行攻略和vlog",
-  },
-  {
-    name: "百度搜索",
-    icon: "🔍",
-    color: "bg-blue-600 hover:bg-blue-700",
-    getUrl: (from, to, days) =>
-      `https://www.baidu.com/s?wd=${encodeURIComponent(
-        `${from}到${to} ${days}天旅游攻略`
-      )}`,
-    description: "综合搜索引擎聚合内容",
-  },
-  {
-    name: "知乎",
-    icon: "💡",
-    color: "bg-blue-400 hover:bg-blue-500",
-    getUrl: (from, to, days) =>
-      `https://www.zhihu.com/search?type=content&q=${encodeURIComponent(
-        `${to}旅游攻略 ${days}天`
-      )}`,
-    description: "深度旅行经验分享和问答",
-  },
-];
+// 默认城市图片
+export const defaultCityImage = "https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?w=800";
 
 // 快捷关键词
 export const quickKeywords = [
-  { label: "美食推荐", keyword: "美食" },
-  { label: "必去景点", keyword: "景点" },
-  { label: "住宿攻略", keyword: "酒店住宿" },
-  { label: "交通指南", keyword: "交通" },
-  { label: "行程安排", keyword: "行程" },
-  { label: "省钱攻略", keyword: "省钱" },
+  { label: "美食推荐", keyword: "美食", icon: "🍜" },
+  { label: "必去景点", keyword: "景点", icon: "🏛️" },
+  { label: "住宿攻略", keyword: "酒店住宿", icon: "🏨" },
+  { label: "交通指南", keyword: "交通", icon: "🚄" },
+  { label: "行程安排", keyword: "行程", icon: "📅" },
+  { label: "省钱攻略", keyword: "省钱", icon: "💰" },
 ];
